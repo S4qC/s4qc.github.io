@@ -1,45 +1,16 @@
-<!doctype html>
-<html lang="en" dir="auto">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-  <meta name="robots" content="index, follow">
-
-  <title>S4qC</title>
-  <meta name="description" content="This is a clean starter template.">
-  <meta name="author" content="">
-
-  <!-- Replace with your stylesheet -->
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Replace with your favicon -->
-  <link rel="icon" href="favicon.ico">
-
-  <!-- Fonts (optional, you can remove or change) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShulkerCode - Home</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body id="top">
-
-  <header class="header">
-    <nav class="nav">
-      <div class="logo">
-        <a href="/" title="Home">S4qC</a>
-        <div class="logo-switches">
-<button id="theme-toggle" title="Toggle theme">
-  <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" 
-       viewBox="0 0 24 24" fill="none" stroke="currentColor" 
-       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 
-             7 7 0 0 0 21 12.79z"/>
-  </svg>
-</button>
-
-
-        </div>
-      </div>
-      <ul id="menu">
+<body class="dark-mode">
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShulkerCode</div>
+      <ul class="nav-links">
         <li><a href="/about.html" title="About">About</a></li>
         <li><a href="/categories.html" title="Categories">Categories</a></li>
         <li><a href="/search.html" title="Search">Search</a></li>
@@ -47,36 +18,14 @@
     </nav>
   </header>
 
-  <main class="main">
-    <article class="post-single">
-      <header class="post-header">
-        <h1 class="post-title">Welcome</h1>
-        <div class="post-meta">Posted by Admin</div>
-      </header>
-      <div class="post-content">
-        <p>This is where all the details about you will go, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
-      <footer class="post-footer">
-        <!-- Optional footer content -->
-      </footer>
-    </article>
-  </main>
+  <section class="hero">
+    <h1>Welcome to <span>ShulkerCode</span></h1>
+    <p>We create Minecraft mods, plugins, and cool software projects.</p>
+    <a href="projects.html" class="btn">View Projects</a>
+  </section>
 
-  <footer class="footer">
-    <span>&copy; 2025 </span> · Made by <a href="https://chipflare.github.io/">ChipFlare Studios</a> for S4qC
+  <footer>
+    <p>© 2025 ShulkerCode. All rights reserved.</p>
   </footer>
-
-  <a href="#top" aria-label="go to top" title="Go to Top" class="top-link" id="top-link">
-    <svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-  </a>
-
-  <!-- Add your scripts here -->
-  <script>
-    // Example dark mode toggle
-    const btn = document.getElementById("theme-toggle");
-    btn?.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-    });
-  </script>
 </body>
 </html>
