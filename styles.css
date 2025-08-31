@@ -2,12 +2,11 @@
   --gap: 24px;
   --content-gap: 20px;
   --nav-width: 1024px;
-  --main-width: 800px; /* slightly wider for balance */
+  --main-width: 800px;
   --header-height: 60px;
   --footer-height: 60px;
   --radius: 10px;
 
-  /* Dark theme only */
   --theme: #1a1b26;
   --entry: #24273a;
   --primary: #cdd6f4;
@@ -18,252 +17,124 @@
   --code-bg: #181825;
   --border: #3b3f52;
 
-  --accent: #8aadf4;   /* blue */
-  --accent-alt: #c6a0f6; /* purple */
+  --accent: #8aadf4;
+  --accent-alt: #c6a0f6;
 }
 
-/* ------------------------------
-   Base & Reset (no animations)
------------------------------- */
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
+* {
   margin: 0;
-  background: var(--theme);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
   color: var(--primary);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: var(--theme);
+  padding-top: var(--header-height);
 }
-img, svg, video { display: block; max-width: 100%; height: auto; }
-iframe { max-width: 100%; }
 
-/* Remove default gaps */
-h1, h2, h3, h4, h5, h6, p, figure { margin: 0; }
-ul[class], ol[class] { padding-left: 1.2rem; }
-
-/* ------------------------------
-   Layout helpers
------------------------------- */
-.container {
-  max-width: var(--main-width);
-  margin-inline: auto;
-  padding-inline: clamp(16px, 4vw, var(--gap));
-}
-.stack > * + * { margin-top: var(--content-gap); }
-.cluster { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; }
-
-/* ------------------------------
-   Typography scale & links
------------------------------- */
-h1 { font-size: clamp(28px, 4.3vw, 34px); line-height: 1.2; letter-spacing: -0.01em; }
-h2 { font-size: clamp(22px, 3.5vw, 26px); line-height: 1.25; }
-h3 { font-size: clamp(18px, 3vw, 20px); line-height: 1.3; }
-small, .text-sm { font-size: 0.875rem; color: var(--secondary); }
-.muted { color: var(--secondary); }
-
-p { color: var(--content); }
-
-a { color: var(--accent); text-decoration: none; }
-a:hover { color: var(--accent-alt); text-decoration: underline; text-underline-offset: 2px; }
-
-/* ------------------------------
-   Header / Navbar
------------------------------- */
-.nav {
-  position: sticky; top: 0; z-index: 50; /* simple usability; no fancy effects */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: var(--entry);
   border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 18px;
+  z-index: 1000;
 }
-.nav-inner {
-  max-width: var(--nav-width);
-  margin-inline: auto;
-  height: var(--header-height);
-  padding-inline: clamp(12px, 3vw, var(--gap));
-  display: flex; align-items: center; justify-content: space-between;
-}
-.brand { font-weight: 700; letter-spacing: 0.2px; }
-.brand a { color: var(--primary); }
 
-.nav-links { display: flex; gap: 6px; }
-.nav-links a {
-  display: inline-block;
-  padding: 8px 12px;
-  border-radius: 8px;
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+header h1 {
+  font-size: 1.4rem;
   color: var(--primary);
 }
-.nav-links a:hover,
-.nav-links .active {
-  background: var(--tertiary);
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+.intro {
+  max-width: var(--main-width);
+  margin: 40px auto;
+  background: var(--entry);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.intro h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--accent);
+}
+
+.intro p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--content);
+}
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+  text-align: center;
+  padding: 20px;
+  background: var(--entry);
+  margin-top: 40px;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+  color: var(--secondary);
+}
+
+.footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.footer a:hover {
   color: var(--accent-alt);
 }
 
-/* Stacks nicely on small screens */
-@media (max-width: 640px) {
-  .nav-inner { height: auto; padding-block: 12px; gap: 12px; flex-wrap: wrap; }
-}
-
-/* ------------------------------
-   Main Content & Cards (Posts)
------------------------------- */
-main { padding-block: clamp(16px, 4vw, 40px); }
-
-/* Grid for lists of posts */
-.posts {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--gap);
-}
-
-.post-entry {
-  background: var(--entry);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: clamp(14px, 3.2vw, 20px);
-  display: flex; flex-direction: column; gap: 10px;
-}
-.post-media {
-  overflow: hidden; border-radius: calc(var(--radius) - 2px);
-}
-.post-media img {
-  width: 100%; height: 180px; object-fit: cover; /* never massive, always contained */
-}
-.entry-header { display: grid; gap: 6px; }
-.entry-header h2 { color: var(--primary); font-size: 20px; }
-.entry-meta { color: var(--secondary); font-size: 0.9rem; }
-.entry-content { color: var(--secondary); font-size: 0.975rem; line-height: 1.65; }
-
-/* Make single post page comfortable */
-.article {
-  background: var(--entry);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: clamp(18px, 3.6vw, 28px);
-}
-.article .title { margin-bottom: 6px; }
-.article .meta { color: var(--secondary); margin-bottom: 16px; }
-
-/* Prose formatting inside article */
-.prose > * + * { margin-top: 1em; }
-.prose h2 { margin-top: 1.6em; }
-.prose h3 { margin-top: 1.2em; }
-.prose ul, .prose ol { padding-left: 1.2rem; }
-.prose blockquote {
-  margin: 1rem 0; padding: 0.6rem 1rem;
-  border-left: 3px solid var(--accent);
-  background: color-mix(in oklab, var(--entry), var(--accent) 6%);
-}
-
-/* ------------------------------
-   Media & Images (global)
------------------------------- */
-img { border-radius: var(--radius); }
-.figure { margin: 1rem 0; }
-.figure img { width: 100%; height: auto; }
-.figure figcaption { color: var(--secondary); font-size: 0.9rem; margin-top: 6px; text-align: center; }
-
-/* ------------------------------
-   Buttons
------------------------------- */
-.button, button, .btn {
-  -webkit-appearance: none;
-  appearance: none;
-  display: inline-flex; align-items: center; justify-content: center;
-  gap: 8px;
-  background: var(--accent); /* flat, modern */
-  color: #0b1020; /* readable on accent */
-  border: 1px solid transparent;
-  border-radius: 10px;
-  padding: 10px 16px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.button:hover, button:hover, .btn:hover {
-  background: var(--accent-alt); /* subtle state */
-}
-.button:disabled, button:disabled, .btn:disabled {
-  opacity: 0.6; cursor: not-allowed;
-}
-.btn-ghost { background: transparent; color: var(--primary); border-color: var(--border); }
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-/* ------------------------------
-   Forms (minimal)
------------------------------- */
-input, textarea, select {
-  width: 100%;
-  background: var(--code-bg);
-  color: var(--primary);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 12px;
-  font: inherit;
-}
-input::placeholder, textarea::placeholder { color: var(--secondary); }
-label { display: block; font-weight: 600; margin-bottom: 6px; }
-
-/* ------------------------------
-   Code & Pre
------------------------------- */
-code {
-  background: var(--code-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 2px 6px;
-  font-size: 0.9em;
-}
-pre code {
-  display: block;
-  background: var(--code-block-bg);
-  padding: 14px;
-  border-radius: var(--radius);
-  overflow-x: auto;
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-}
-
-/* ------------------------------
-   Tables
------------------------------- */
-.table {
-  width: 100%; border-collapse: collapse; overflow: hidden; border-radius: var(--radius);
-}
-.table th, .table td { padding: 12px; text-align: left; }
-.table thead { background: var(--tertiary); color: var(--primary); }
-.table tbody tr { border-top: 1px solid var(--border); }
-.table tbody tr:hover { background: color-mix(in oklab, var(--entry), white 2%); }
-
-/* ------------------------------
-   Footer
------------------------------- */
-.footer {
-  border-top: 1px solid var(--border);
-  color: var(--secondary);
-  text-align: center;
-  padding: 16px clamp(16px, 4vw, var(--gap));
-}
-.footer a { color: var(--accent); }
-.footer a:hover { color: var(--accent-alt); }
-
-/* ------------------------------
-   Utilities
------------------------------- */
-.hr { height: 1px; background: var(--border); border: 0; margin: var(--gap) 0; }
-.card { background: var(--entry); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-.max-w-wide { max-width: var(--nav-width); margin-inline: auto; }
-.center { text-align: center; }
-.hidden { display: none !important; }
-.visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
-
-/* ------------------------------
-   Responsive tweaks
------------------------------- */
-@media (min-width: 1024px) {
-  body { font-size: 17px; }
-}
 @media (max-width: 480px) {
-  .posts { grid-template-columns: 1fr; }
-  .post-media img { height: 160px; }
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .intro h2 {
+    font-size: 1.4rem;
+  }
+
+  .intro p {
+    font-size: 0.9rem;
+  }
 }
