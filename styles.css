@@ -2,7 +2,7 @@
   --gap: 24px;
   --content-gap: 20px;
   --nav-width: 1024px;
-  --main-width: 800px;           /* base width for content */
+  --main-width: 800px;
   --header-height: 60px;
   --footer-height: 60px;
   --radius: 10px;
@@ -21,14 +21,6 @@
   --accent-alt: #c6a0f6;
 }
 
-/* widen container on larger screens without losing the "box" look */
-@media (min-width: 1100px) {
-  :root { --main-width: 960px; }
-}
-@media (min-width: 1440px) {
-  :root { --main-width: 1100px; }
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -40,9 +32,7 @@ body {
   line-height: 1.6;
   color: var(--primary);
   background: var(--theme);
-  /* make room for fixed header/footer so content doesn't feel cramped */
-  padding-top: calc(var(--header-height) + 8px);
-  padding-bottom: calc(var(--footer-height) + 16px);
+  padding-top: var(--header-height);
 }
 
 header {
@@ -89,57 +79,43 @@ nav a {
   transition: color 0.2s ease;
 }
 
-nav a:hover,
-nav a.active {
+nav a:hover {
   color: var(--accent);
 }
 
-/* === About Section (keeps the container, just wider & cleaner) === */
+/* ---- About Section (Improved) ---- */
 .intro {
-  max-width: var(--main-width);   /* keep container feel */
-  width: 100%;
-  margin: 48px auto 72px;         /* good breathing space; extra bottom so footer doesn't overlap */
+  max-width: 900px; /* wider */
+  margin: 60px auto;
   background: var(--entry);
-  border: 1px solid var(--border); /* subtle edge to define the box */
   border-radius: var(--radius);
-  padding: clamp(20px, 3vw, 36px); /* responsive padding */
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.28); /* gentle shadow, not heavy */
+  padding: 40px;
+  text-align: center; /* center content */
 }
 
 .intro h2 {
-  font-size: clamp(1.6rem, 2.2vw, 2rem);
-  margin-bottom: 16px;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
   color: var(--accent);
-  position: relative;
-}
-
-.intro h2::after {
-  content: "";
-  display: block;
-  width: 64px;
-  height: 2px;
-  background: var(--accent);
-  margin-top: 8px;
-  border-radius: 2px;
-  opacity: 0.9;
+  font-weight: bold;
 }
 
 .intro p {
-  font-size: clamp(1rem, 1.2vw, 1.1rem);
-  line-height: 1.85;
+  font-size: 1.1rem;
+  line-height: 1.9;
   color: var(--content);
-  margin-bottom: 1rem; /* tidy paragraph spacing */
+  margin-bottom: 15px;
 }
 
-/* Footer stays fixed; ensure content has bottom padding in body */
+/* ---- Footer ---- */
 .footer {
   position: fixed;
-  bottom: 0;
-  left: 0;
+  bottom: 0px;
   width: 100vw;
   text-align: center;
-  padding: 16px 12px;
+  padding: 20px;
   background: var(--entry);
+  margin-top: 40px;
   font-size: 0.9rem;
   border-top: 1px solid var(--border);
   color: var(--secondary);
@@ -154,21 +130,14 @@ nav a.active {
   color: var(--accent-alt);
 }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .intro {
-    margin: 32px 12px 96px; /* more bottom room for fixed footer on small screens */
-    padding: 20px;
-  }
-}
-
+/* ---- Mobile Responsive ---- */
 @media (max-width: 480px) {
   header h1 {
     font-size: 1.2rem;
   }
 
   .intro h2 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
   .intro p {
