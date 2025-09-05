@@ -2,7 +2,7 @@
   --gap: 24px;
   --content-gap: 20px;
   --nav-width: 1024px;
-  --main-width: 900px;        /* set the content container width used on large screens */
+  --main-width: 1100px;        /* max readable width */
   --header-height: 60px;
   --footer-height: 60px;
   --radius: 10px;
@@ -28,19 +28,18 @@
   box-sizing: border-box;
 }
 
-/* page background + room for fixed header/footer */
+/* body background + space for fixed header/footer */
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
   color: var(--primary);
   background: var(--theme);
 
-  /* reserve space so header/footer don't cover content */
   padding-top: calc(var(--header-height) + 8px);
   padding-bottom: calc(var(--footer-height) + 12px);
 }
 
-/* ---------- Header (keeps your look) ---------- */
+/* ---------- Header ---------- */
 header {
   position: fixed;
   top: 0;
@@ -56,7 +55,6 @@ header {
   z-index: 1000;
 }
 
-/* logo block */
 .logo-container {
   display: flex;
   align-items: center;
@@ -74,13 +72,11 @@ header {
   display: inline-block;
 }
 
-/* site title next to logo */
 .site-title {
   font-size: 1.35rem;
   color: var(--primary);
 }
 
-/* nav */
 nav ul {
   list-style: none;
   display: flex;
@@ -97,7 +93,6 @@ nav a {
   transition: color 160ms ease, background 160ms ease;
 }
 
-/* hover + active states */
 nav a:hover,
 nav a:focus {
   color: var(--accent);
@@ -106,31 +101,29 @@ nav a:focus {
 
 nav a.active {
   color: var(--accent);
-  background: rgba(138, 173, 244, 0.06); /* very subtle highlight */
+  background: rgba(138, 173, 244, 0.06);
 }
 
-/* ---------- Main container ---------- */
-/* this container keeps the "box" feel but is wider on laptops */
+/* ---------- Main Content ---------- */
 .content {
-  max-width: var(--main-width);
   width: 100%;
-  margin: 42px auto; /* keeps the box centered and same distance on all screens */
-  padding: 0 18px;   /* small inner padding so it doesn't touch edges on small screens */
+  margin: 42px auto;
+  padding: 0 18px;
 }
 
-/* ---------- About box (intro) ---------- */
-/* Centered text, professional spacing, and no layout break */
+/* ---------- About (Intro Section) ---------- */
 .intro {
   background: var(--entry);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 36px;
-  text-align: center;           /* all text centered as you asked */
+  padding: 48px 60px;
+  text-align: center;
   color: var(--content);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25); /* gentle depth to pop from the background */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  max-width: var(--main-width);
 }
 
-/* heading */
 .intro h2 {
   font-size: clamp(1.6rem, 2.4vw, 2.2rem);
   margin-bottom: 14px;
@@ -139,7 +132,6 @@ nav a.active {
   letter-spacing: 0.2px;
 }
 
-/* small underline accent below heading */
 .intro h2::after {
   content: "";
   display: block;
@@ -151,23 +143,26 @@ nav a.active {
   opacity: 0.95;
 }
 
-/* paragraphs */
 .intro p {
   font-size: clamp(1rem, 1.1vw, 1.08rem);
   line-height: 1.85;
   color: var(--content);
   margin-top: 14px;
   margin-bottom: 12px;
-  max-width: 800px; /* keeps super wide paragraphs readable */
+  max-width: 900px;
   margin-left: auto;
-  margin-right: auto; /* center paragraphs inside the card */
+  margin-right: auto;
 }
 
-/* bold + emphasis styling keeps colors readable */
-.intro strong { color: var(--primary); }
-.intro em { color: var(--accent); font-style: normal; }
+.intro strong {
+  color: var(--primary);
+}
+.intro em {
+  color: var(--accent);
+  font-style: normal;
+}
 
-/* ---------- Footer (keeps your look) ---------- */
+/* ---------- Footer ---------- */
 .footer {
   position: fixed;
   bottom: 0;
@@ -184,7 +179,6 @@ nav a.active {
   font-size: 0.95rem;
 }
 
-/* links in footer */
 .footer a {
   color: var(--accent);
   text-decoration: none;
@@ -194,26 +188,52 @@ nav a.active {
   color: var(--accent-alt);
 }
 
-/* ---------- Accessibility helpers ---------- */
-a:focus { outline: 3px solid rgba(138,173,244,0.18); outline-offset: 2px; }
+/* ---------- Accessibility ---------- */
+a:focus {
+  outline: 3px solid rgba(138, 173, 244, 0.18);
+  outline-offset: 2px;
+}
 
-/* ---------- Responsive tweaks ---------- */
+/* ---------- Responsive Tweaks ---------- */
 @media (max-width: 900px) {
-  :root { --main-width: 700px; } /* slightly smaller container on medium screens */
-  .intro { padding: 28px; }
+  :root {
+    --main-width: 700px;
+  }
+  .intro {
+    padding: 28px;
+  }
 }
 
 @media (max-width: 600px) {
-  :root { --main-width: 100%; }
-  header { padding: 6px 12px; }
-  .content { margin: 24px 12px; }
-  .intro { padding: 20px; }
-  .site-title { font-size: 1.1rem; }
-  nav ul { gap: 12px; }
+  :root {
+    --main-width: 100%;
+  }
+  header {
+    padding: 6px 12px;
+  }
+  .content {
+    margin: 24px 12px;
+  }
+  .intro {
+    padding: 20px;
+  }
+  .site-title {
+    font-size: 1.1rem;
+  }
+  nav ul {
+    gap: 12px;
+  }
 }
 
 @media (max-width: 420px) {
-  body { padding-top: calc(var(--header-height) + 6px); padding-bottom: calc(var(--footer-height) + 8px); }
-  .intro h2 { font-size: 1.4rem; }
-  .intro p { font-size: 0.98rem; }
+  body {
+    padding-top: calc(var(--header-height) + 6px);
+    padding-bottom: calc(var(--footer-height) + 8px);
+  }
+  .intro h2 {
+    font-size: 1.4rem;
+  }
+  .intro p {
+    font-size: 0.98rem;
+  }
 }
