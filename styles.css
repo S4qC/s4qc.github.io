@@ -2,7 +2,7 @@
   --gap: 24px;
   --content-gap: 20px;
   --nav-width: 1024px;
-  --main-width: 800px;
+  --main-width: 900px;        /* set the content container width used on large screens */
   --header-height: 60px;
   --footer-height: 60px;
   --radius: 10px;
@@ -21,34 +21,42 @@
   --accent-alt: #c6a0f6;
 }
 
+/* basic resets */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* page background + room for fixed header/footer */
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
   color: var(--primary);
   background: var(--theme);
-  padding-top: var(--header-height);
+
+  /* reserve space so header/footer don't cover content */
+  padding-top: calc(var(--header-height) + 8px);
+  padding-bottom: calc(var(--footer-height) + 12px);
 }
 
+/* ---------- Header (keeps your look) ---------- */
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: var(--header-height);
   background: var(--entry);
   border-bottom: 1px solid var(--border);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 2px 18px;
+  justify-content: space-between;
+  padding: 6px 18px;
   z-index: 1000;
 }
 
+/* logo block */
 .logo-container {
   display: flex;
   align-items: center;
@@ -59,68 +67,124 @@ header {
   height: 40px;
   width: 40px;
   border-radius: 50%;
+  display: block;
 }
 
-header h1 {
-  font-size: 1.4rem;
+.logo-link {
+  display: inline-block;
+}
+
+/* site title next to logo */
+.site-title {
+  font-size: 1.35rem;
   color: var(--primary);
 }
 
+/* nav */
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 18px;
+  align-items: center;
 }
 
 nav a {
   text-decoration: none;
   color: var(--secondary);
   font-weight: 500;
-  transition: color 0.2s ease;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: color 160ms ease, background 160ms ease;
 }
 
-nav a:hover {
+/* hover + active states */
+nav a:hover,
+nav a:focus {
   color: var(--accent);
+  outline: none;
 }
 
-/* ---- About Section (Improved) ---- */
+nav a.active {
+  color: var(--accent);
+  background: rgba(138, 173, 244, 0.06); /* very subtle highlight */
+}
+
+/* ---------- Main container ---------- */
+/* this container keeps the "box" feel but is wider on laptops */
+.content {
+  max-width: var(--main-width);
+  width: 100%;
+  margin: 42px auto; /* keeps the box centered and same distance on all screens */
+  padding: 0 18px;   /* small inner padding so it doesn't touch edges on small screens */
+}
+
+/* ---------- About box (intro) ---------- */
+/* Centered text, professional spacing, and no layout break */
 .intro {
-  max-width: 900px; /* wider */
-  margin: 60px auto;
   background: var(--entry);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 40px;
-  text-align: center; /* center content */
-}
-
-.intro h2 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  color: var(--accent);
-  font-weight: bold;
-}
-
-.intro p {
-  font-size: 1.1rem;
-  line-height: 1.9;
+  padding: 36px;
+  text-align: center;           /* all text centered as you asked */
   color: var(--content);
-  margin-bottom: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25); /* gentle depth to pop from the background */
 }
 
-/* ---- Footer ---- */
+/* heading */
+.intro h2 {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* small underline accent below heading */
+.intro h2::after {
+  content: "";
+  display: block;
+  margin: 10px auto 0;
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+  border-radius: 3px;
+  opacity: 0.95;
+}
+
+/* paragraphs */
+.intro p {
+  font-size: clamp(1rem, 1.1vw, 1.08rem);
+  line-height: 1.85;
+  color: var(--content);
+  margin-top: 14px;
+  margin-bottom: 12px;
+  max-width: 800px; /* keeps super wide paragraphs readable */
+  margin-left: auto;
+  margin-right: auto; /* center paragraphs inside the card */
+}
+
+/* bold + emphasis styling keeps colors readable */
+.intro strong { color: var(--primary); }
+.intro em { color: var(--accent); font-style: normal; }
+
+/* ---------- Footer (keeps your look) ---------- */
 .footer {
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
+  left: 0;
   width: 100vw;
-  text-align: center;
-  padding: 20px;
+  height: var(--footer-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
   background: var(--entry);
-  margin-top: 40px;
-  font-size: 0.9rem;
   border-top: 1px solid var(--border);
   color: var(--secondary);
+  font-size: 0.95rem;
 }
 
+/* links in footer */
 .footer a {
   color: var(--accent);
   text-decoration: none;
@@ -130,17 +194,26 @@ nav a:hover {
   color: var(--accent-alt);
 }
 
-/* ---- Mobile Responsive ---- */
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.2rem;
-  }
+/* ---------- Accessibility helpers ---------- */
+a:focus { outline: 3px solid rgba(138,173,244,0.18); outline-offset: 2px; }
 
-  .intro h2 {
-    font-size: 1.6rem;
-  }
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 900px) {
+  :root { --main-width: 700px; } /* slightly smaller container on medium screens */
+  .intro { padding: 28px; }
+}
 
-  .intro p {
-    font-size: 0.95rem;
-  }
+@media (max-width: 600px) {
+  :root { --main-width: 100%; }
+  header { padding: 6px 12px; }
+  .content { margin: 24px 12px; }
+  .intro { padding: 20px; }
+  .site-title { font-size: 1.1rem; }
+  nav ul { gap: 12px; }
+}
+
+@media (max-width: 420px) {
+  body { padding-top: calc(var(--header-height) + 6px); padding-bottom: calc(var(--footer-height) + 8px); }
+  .intro h2 { font-size: 1.4rem; }
+  .intro p { font-size: 0.98rem; }
 }
