@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S4qC</title>
-  <link rel="stylesheet" href="styles.css"> 
-  <link rel="icon" type="image/png" href="images/newlogo-modified.png"> <!-- Favicon -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>S4qC - About</title>
+
+  <!-- your stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- favicon (keeps your existing image path) -->
+  <link rel="icon" type="image/png" href="images/newlogo-modified.png" />
 </head>
 <body>
+  <!-- Header (unchanged look, same structure you used before) -->
   <header>
     <div class="logo-container">
-      <a href="index.html">
-        <img src="images/newlogo-modified.png" alt="ShulkerCode Logo" class="logo">
+      <a href="index.html" class="logo-link" aria-label="Go to home">
+        <img src="images/newlogo-modified.png" alt="ShulkerCode Logo" class="logo" />
       </a>
-      <h1>S4qC</h1>
+      <h1 class="site-title">S4qC</h1>
     </div>
-    
-    <nav>
+
+    <nav role="navigation" aria-label="Main">
       <ul>
         <li><a href="index.html" class="active">About</a></li>
         <li><a href="blog.html">Blogs</a></li>
@@ -24,32 +29,39 @@
     </nav>
   </header>
 
+  <!-- Main content area -->
   <main class="content">
-    <section class="about-box">
-      <h2>About Me</h2>
+    <section class="intro" aria-labelledby="about-heading">
+      <h2 id="about-heading">About Me</h2>
+
       <p>
-        Hi! I’m someone who enjoys reading, writing, and sharing ideas with others through words. 
-        My interests range from <strong>technology</strong> to <strong>personal growth</strong> and <strong>self-improvement</strong>, 
-        as I find these subjects both valuable and fascinating. 
+        Hi — I'm someone who loves reading, writing, and sharing ideas. I enjoy
+        topics like <strong>technology</strong>, <strong>learning</strong>, and
+        <strong>self-improvement</strong>.
       </p>
+
       <p>
-        My goal with this site is to write in <em>simple and easy-to-understand words</em>, so that anyone — 
-        no matter their background — can connect with the blogs I share.
+        My goal is to write in simple words so anyone can understand. I share
+        things I learn and thoughts I find useful. If you want to reach out, I’d
+        be glad to hear from you.
       </p>
+
       <p>
-        If you have any questions, suggestions, or perspectives of your own, please feel free to reach out.  
-        I’d be glad to connect with you ✨
+        Thanks for visiting this site — I hope you find something helpful or
+        interesting here. ✨
       </p>
     </section>
   </main>
 
+  <!-- Footer (keeps your previous footer structure) -->
   <footer class="footer">
     <p>
-      made with ❤️ by 
-      <a href="https://S4qC.github.io" target="_blank">S4qC</a>
+      made with ❤️ by
+      <a href="https://S4qC.github.io" target="_blank" rel="noopener noreferrer">S4qC</a>
     </p>
   </footer>
-  
+
+  <!-- optional script (keep your existing script.js if you use it) -->
   <script src="script.js"></script>
 </body>
 </html>
