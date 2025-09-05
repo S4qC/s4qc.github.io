@@ -79,28 +79,45 @@ nav a {
   transition: color 0.2s ease;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
   color: var(--accent);
 }
 
+/* === About Section Improvements === */
 .intro {
-  max-width: var(--main-width);
-  margin: 40px auto;
+  max-width: 1000px;         /* wider box for laptops */
+  margin: 60px auto;         /* more breathing space */
   background: var(--entry);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* soft shadow */
 }
 
+/* Title styling */
 .intro h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
   color: var(--accent);
+  position: relative;
 }
 
+.intro h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* Paragraphs */
 .intro p {
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 1.1rem;
+  line-height: 1.9;
   color: var(--content);
+  margin-bottom: 1.2rem;   /* spacing between paragraphs */
 }
 
 .footer {
@@ -125,6 +142,22 @@ nav a:hover {
   color: var(--accent-alt);
 }
 
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .intro {
+    padding: 20px;
+    margin: 40px 15px;
+  }
+
+  .intro h2 {
+    font-size: 1.6rem;
+  }
+
+  .intro p {
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 480px) {
   header h1 {
     font-size: 1.2rem;
@@ -135,6 +168,6 @@ nav a:hover {
   }
 
   .intro p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
