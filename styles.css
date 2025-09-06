@@ -271,12 +271,12 @@ a:focus {
   font-weight: 600;
   text-decoration: none;
   text-align: center;
-  transition: all 0.25s ease;
+  transition: background 0.5s ease, transform 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .category-btn:hover {
-  background: var(--accent);
+  background: linear-gradient(45deg, var(--accent), var(--accent-alt)), var(--accent);
   color: var(--theme);
   border-color: var(--accent);
   transform: translateY(-3px);
@@ -290,3 +290,36 @@ a:focus {
     padding: 16px;
   }
 }
+
+/* ---------- Blog List (Vertical) ---------- */
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category-btn h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  color: inherit;
+}
+
+.category-btn p {
+  margin: 0;
+  font-size: 0.73rem;
+  color: var(--secondary);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .category-btn {
+    padding: 16px;
+  }
+  .category-btn h2 {
+    font-size: 1.1rem;
+  }
+  .category-btn p {
+    font-size: 0.9rem;
+  }
+}
+

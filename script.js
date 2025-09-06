@@ -14,7 +14,6 @@ document.querySelectorAll("nav ul li a").forEach(anchor => {
 });
 
 
-
 // ✅ 3. Copy UPI ID Button (For Donations)
 document.addEventListener("DOMContentLoaded", function() {
     const donationSection = document.querySelector(".donation-info");
@@ -31,9 +30,16 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// ✅ 4. Auto-Update Footer Year
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector("footer p").innerHTML = `© ${new Date().getFullYear()} ShulkerCode. All Rights Reserved.`;
+    const footer = document.querySelector("footer");
+    if (footer) {
+        footer.innerHTML = `
+            <p>
+              made with ❤️ by 
+              <a href="https://chipflare.github.io" target="_blank">ChipFlare Studios</a>
+            </p>
+        `;
+    }
 });
 
 // ✅ 5. Fade-in Animation for Sections on Scroll
@@ -66,3 +72,45 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     document.body.classList.add("page-loaded");
 });
+
+    async function loadBlogs() {
+      try {
+        const response = await fetch("blogs.json"); // your JSON file
+        const data = await response.json();
+
+        // Detect category from hash
+        let category = window.location.hash.substring(1);
+        category = category ? category.charAt(0).toUpperCase() + category.slice(1).toLowerCase() : null;
+
+        const blogList = document.getElementById("blogList");
+        const heading = document.getElementById("pageHeading");
+        blogList.innerHTML = "";
+
+        if (category && data[category]) {
+          heading.textContent = `${category}`;
+          data[category].forEach(blog => {
+            const card = document.createElement("a");
+            card.href = `blog.html#${blog.id}`;
+            card.className = "category-btn";
+            card.innerHTML = `<h2>${blog.name}</h2><p>${blog.description}</p>`;
+            blogList.appendChild(card);
+          });
+        } else {
+          heading.textContent = "Explore Blogs";
+          for (const cat in data) {
+            data[cat].forEach(blog => {
+              const card = document.createElement("a");
+              card.href = `blog.html#${blog.id}`;
+              card.className = "category-btn";
+              card.innerHTML = `<h2>${cat} - ${blog.name}</h2><p>${blog.description}</p>`;
+              blogList.appendChild(card);
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Error loading blogs:", err);
+      }
+    }
+
+    window.addEventListener("hashchange", loadBlogs);
+    window.addEventListener("DOMContentLoaded", loadBlogs);
