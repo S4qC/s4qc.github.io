@@ -1,6 +1,6 @@
 {
   "General": [
-    { "name": "Blog 1", "description": "Blog about the number 1 - placeholder", "id": "blog-1" }
+    { "name": "ExploringNew", "description": "He is a terrible guy - placeholder", "id": "blog-1" }
   ],
   "Tech": [
     { "name": "iPhone 17", "description": "Cameras look bad - placeholder", "id": "iphone-17" },
@@ -10,3 +10,4 @@
     { "name": "How to study", "description": "How you can study with just a clove of garlic - placeholder", "id": "study-tips" }
   ]
 }
+
