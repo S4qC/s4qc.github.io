@@ -14,33 +14,6 @@ document.querySelectorAll("nav ul li a").forEach(anchor => {
 });
 
 
-// ✅ 3. Copy UPI ID Button (For Donations)
-document.addEventListener("DOMContentLoaded", function() {
-    const donationSection = document.querySelector(".donation-info");
-    if (donationSection) {
-        const upiElement = document.createElement("p");
-        upiElement.innerHTML = `<strong>UPI ID:</strong> <span id="upi-text">saadmir@fam</span> 
-                                <button id="copy-upi">Copy</button>`;
-        donationSection.appendChild(upiElement);
-
-        document.getElementById("copy-upi").addEventListener("click", function() {
-            navigator.clipboard.writeText("saadmir@fam");
-            alert("✅ UPI ID copied to clipboard!");
-        });
-    }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const footer = document.querySelector("footer");
-    if (footer) {
-        footer.innerHTML = `
-            <p>
-              made with ❤️ by 
-              <a href="https://chipflare.github.io" target="_blank">ChipFlare Studios</a>
-            </p>
-        `;
-    }
-});
 
 // ✅ 5. Fade-in Animation for Sections on Scroll
 document.addEventListener("scroll", function() {
