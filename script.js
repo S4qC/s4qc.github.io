@@ -63,7 +63,7 @@ async function loadBlogs() {
       heading.textContent = `${category}`;
       data[category].forEach(blog => {
         const card = document.createElement("a");
-        card.href = `blogs/${blog.id}.html`;   // ✅ fixed link
+        card.href = `blogs/${blog.id}/`;   // ✅ fixed to folder
         card.className = "category-btn";
         card.innerHTML = `<h2>${blog.name}</h2><p>${blog.description}</p>`;
         blogList.appendChild(card);
@@ -78,7 +78,7 @@ async function loadBlogs() {
 
         data[cat].forEach(blog => {
           const card = document.createElement("a");
-          card.href = `blogs/${blog.id}.html`;   // ✅ fixed link
+          card.href = `blogs/${blog.id}/`;   // ✅ fixed to folder
           card.className = "category-btn";
           card.innerHTML = `<h2>${blog.name}</h2><p>${blog.description}</p>`;
           blogList.appendChild(card);
