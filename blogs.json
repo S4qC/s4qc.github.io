@@ -1,16 +1,11 @@
 {
   "General": [],
-
-
-
-  
-  
-  "Tech": [],
-
-
-
-
-
-  
+  "Tech": [
+    {
+      "name": "LearnCpp.com Fixed",
+      "description": "LearnCPP lessons in the correct sequence",
+      "id": "LearnCppFixed"
+    }
+  ],
   "Studies": []
 }
