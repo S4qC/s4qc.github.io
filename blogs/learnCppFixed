@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C++ Resources</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" type="image/png" href="../images/newlogo-modified.png">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="https://s4qc.github.io">
+        <img src="../images/newlogo-modified.png" alt="S4qC Logo" class="logo">
+      </a>
+      <h1>S4qC</h1>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="../index.html">About</a></li>
+        <li><a href="../blogs.html">Blogs</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="blog-page">
+    <h1 class="blog-heading">C++ Resources</h1>
+    <p>This page will list useful resources for learning C++.</p>
+
+    <!-- You can paste your full content from your uploaded file here -->
+  </main>
+
+  <footer class="footer">
+    <p>
+      made with ❤️ by 
+      <a href="https://S4qC.github.io" target="_blank">S4qC</a>
+    </p>
+  </footer>
+</body>
+</html>
