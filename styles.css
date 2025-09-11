@@ -320,6 +320,83 @@ a:focus {
   }
   .category-btn p {
     font-size: 0.9rem;
+
+.blog-page {
+  max-width: var(--main-width);
+  margin: 60px auto;
+  padding: 0 20px;
+  color: var(--primary);
+  text-align: left; /* Align text left for better reading */
+  font-size: 1rem;
+  line-height: 1.75;
+  word-break: break-word;
+}
+
+.blog-page a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.blog-page a:hover,
+.blog-page a:focus {
+  color: var(--accent-alt);
+  outline: none;
+}
+
+.blog-page ul {
+  list-style-position: inside; /* Place bullets inside padding */
+  list-style-type: disc; /* Use standard disc bullet */
+  margin-left: 1.25rem; /* Indent the list from left */
+  padding-left: 0;
+  margin-bottom: var(--content-gap);
+}
+
+.blog-page ul li {
+  margin-bottom: 0.4em; /* Spacing between list items */
+}
+
+.blog-page h2,
+.blog-page h3 {
+  color: var(--accent);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.blog-page h2 {
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+}
+
+.blog-page h3 {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+}
+
+/* Fix for code inside links and lists */
+.blog-page code {
+  background: var(--code-bg);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-family: 'Fira Mono', monospace, monospace;
+  font-size: 0.95em;
+  color: var(--accent-alt);
+}
+
+/* Override text-align center global from .blog-page if present */
+.blog-page p {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+/* Responsive improvements */
+@media (max-width: 700px) {
+  .blog-page {
+    padding: 0 12px;
+    font-size: 0.95rem;
+  }
+}
+
   }
 }
 
