@@ -13,8 +13,6 @@ document.querySelectorAll("nav ul li a").forEach(anchor => {
     });
 });
 
-
-
 // ✅ 5. Fade-in Animation for Sections on Scroll
 document.addEventListener("scroll", function() {
     const sections = document.querySelectorAll("section");
@@ -46,44 +44,51 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.classList.add("page-loaded");
 });
 
-    async function loadBlogs() {
-      try {
-        const response = await fetch("blogs.json"); // your JSON file
-        const data = await response.json();
+// ✅ 8. Load Blogs from blogs.json
+async function loadBlogs() {
+  try {
+    const response = await fetch("blogs.json"); // your JSON file
+    const data = await response.json();
 
-        // Detect category from hash
-        let category = window.location.hash.substring(1);
-        category = category ? category.charAt(0).toUpperCase() + category.slice(1).toLowerCase() : null;
+    // Detect category from URL hash (example: blog-list.html#Tech)
+    let category = window.location.hash.substring(1);
+    category = category ? category.charAt(0).toUpperCase() + category.slice(1).toLowerCase() : null;
 
-        const blogList = document.getElementById("blogList");
-        const heading = document.getElementById("pageHeading");
-        blogList.innerHTML = "";
+    const blogList = document.getElementById("blogList");
+    const heading = document.getElementById("pageHeading");
+    blogList.innerHTML = "";
 
-        if (category && data[category]) {
-          heading.textContent = `${category}`;
-          data[category].forEach(blog => {
-            const card = document.createElement("a");
-            card.href = `blog.html#${blog.id}`;
-            card.className = "category-btn";
-            card.innerHTML = `<h2>${blog.name}</h2><p>${blog.description}</p>`;
-            blogList.appendChild(card);
-          });
-        } else {
-          heading.textContent = "Explore Blogs";
-          for (const cat in data) {
-            data[cat].forEach(blog => {
-              const card = document.createElement("a");
-              card.href = `blog.html#${blog.id}`;
-              card.className = "category-btn";
-              card.innerHTML = `<h2>${cat} - ${blog.name}</h2><p>${blog.description}</p>`;
-              blogList.appendChild(card);
-            });
-          }
-        }
-      } catch (err) {
-        console.error("Error loading blogs:", err);
+    if (category && data[category]) {
+      // Show only one category
+      heading.textContent = `${category}`;
+      data[category].forEach(blog => {
+        const card = document.createElement("a");
+        card.href = `blogs/${blog.id}.html`;   // ✅ fixed link
+        card.className = "category-btn";
+        card.innerHTML = `<h2>${blog.name}</h2><p>${blog.description}</p>`;
+        blogList.appendChild(card);
+      });
+    } else {
+      // Show all categories
+      heading.textContent = "Explore Blogs";
+      for (const cat in data) {
+        const catHeading = document.createElement("h2");
+        catHeading.textContent = cat;
+        blogList.appendChild(catHeading);
+
+        data[cat].forEach(blog => {
+          const card = document.createElement("a");
+          card.href = `blogs/${blog.id}.html`;   // ✅ fixed link
+          card.className = "category-btn";
+          card.innerHTML = `<h2>${blog.name}</h2><p>${blog.description}</p>`;
+          blogList.appendChild(card);
+        });
       }
     }
+  } catch (err) {
+    console.error("Error loading blogs:", err);
+  }
+}
 
-    window.addEventListener("hashchange", loadBlogs);
-    window.addEventListener("DOMContentLoaded", loadBlogs);
+window.addEventListener("hashchange", loadBlogs);
+window.addEventListener("DOMContentLoaded", loadBlogs);
