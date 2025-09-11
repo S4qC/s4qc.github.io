@@ -18,12 +18,14 @@
   --accent: #8aadf4;
   --accent-alt: #c6a0f6;
 }
+
 /* basic resets */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 /* body background + space for fixed header/footer */
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -33,6 +35,7 @@ body {
   padding-top: calc(var(--header-height) + 8px);
   padding-bottom: calc(var(--footer-height) + 12px);
 }
+
 /* ---------- Header ---------- */
 header {
   position: fixed;
@@ -48,30 +51,36 @@ header {
   padding: 6px 18px;
   z-index: 1000;
 }
+
 .logo-container {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .logo {
   height: 40px;
   width: 40px;
   border-radius: 50%;
   display: block;
 }
+
 .logo-link {
   display: inline-block;
 }
+
 .site-title {
   font-size: 1.35rem;
   color: var(--primary);
 }
+
 nav ul {
   list-style: none;
   display: flex;
   gap: 18px;
   align-items: center;
 }
+
 nav a {
   text-decoration: none;
   color: var(--secondary);
@@ -80,21 +89,25 @@ nav a {
   border-radius: 6px;
   transition: color 160ms ease, background 160ms ease;
 }
+
 nav a:hover,
 nav a:focus {
   color: var(--accent);
   outline: none;
 }
+
 nav a.active {
   color: var(--accent);
   background: rgba(138, 173, 244, 0.06);
 }
+
 /* ---------- Main Content ---------- */
 .content {
   width: 100%;
   margin: 42px auto;
   padding: 0 18px;
 }
+
 /* ---------- About (Intro Section) ---------- */
 .intro {
   background: var(--entry);
@@ -107,6 +120,7 @@ nav a.active {
   margin: 0 auto;
   max-width: var(--main-width);
 }
+
 .intro h2 {
   font-size: clamp(1.6rem, 2.4vw, 2.2rem);
   margin-bottom: 14px;
@@ -114,6 +128,7 @@ nav a.active {
   font-weight: 700;
   letter-spacing: 0.2px;
 }
+
 .intro h2::after {
   content: "";
   display: block;
@@ -124,6 +139,7 @@ nav a.active {
   border-radius: 3px;
   opacity: 0.95;
 }
+
 .intro p {
   font-size: clamp(1rem, 1.1vw, 1.08rem);
   line-height: 1.85;
@@ -134,13 +150,16 @@ nav a.active {
   margin-left: auto;
   margin-right: auto;
 }
+
 .intro strong {
   color: var(--primary);
 }
+
 .intro em {
   color: var(--accent);
   font-style: normal;
 }
+
 /* ---------- Footer ---------- */
 .footer {
   position: fixed;
@@ -157,77 +176,177 @@ nav a.active {
   color: var(--secondary);
   font-size: 0.95rem;
 }
+
 .footer a {
   color: var(--accent);
   text-decoration: none;
 }
+
 .footer a:hover {
   color: var(--accent-alt);
 }
+
 /* ---------- Accessibility ---------- */
 a:focus {
   outline: 3px solid rgba(138, 173, 244, 0.18);
   outline-offset: 2px;
 }
-/* ---------- Responsive Tweaks ---------- */
-@media (max-width: 900px) {
-  :root {
-    --main-width: 700px;
-  }
-  .intro {
-    padding: 28px;
-  }
-}
-@media (max-width: 600px) {
-  :root {
-    --main-width: 100%;
-  }
-  header {
-    padding: 6px 12px;
-  }
-  .content {
-    margin: 24px 12px;
-  }
-  .intro {
-    padding: 20px;
-  }
-  .site-title {
-    font-size: 1.1rem;
-  }
-  nav ul {
-    gap: 12px;
-  }
-}
-@media (max-width: 420px) {
-  body {
-    padding-top: calc(var(--header-height) + 6px);
-    padding-bottom: calc(var(--footer-height) + 8px);
-  }
-  .intro h2 {
-    font-size: 1.4rem;
-  }
-  .intro p {
-    font-size: 0.98rem;
-  }
-}
+
 /* ---------- Blog Page ---------- */
 .blog-page {
   max-width: var(--main-width);
   margin: 60px auto;
   padding: 0 20px;
-  text-align: center;
+  color: var(--primary);
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.75;
+  word-break: break-word;
 }
+
 .blog-heading {
   font-size: clamp(1.8rem, 2.8vw, 2.4rem);
   color: var(--accent);
   margin-bottom: 40px;
   font-weight: 700;
+  text-align: center;
 }
+
+/* ---------- Link Styling (Fixed) ---------- */
+.blog-page a,
+.blog-page a:link,
+.blog-page a:visited {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.blog-page a:hover,
+.blog-page a:focus {
+  color: var(--accent-alt);
+  border-bottom: 1px solid var(--accent-alt);
+  outline: none;
+}
+
+/* ---------- List Styling (Fixed) ---------- */
+.blog-page ul,
+.blog-page ol {
+  margin-left: 0;
+  padding-left: 1.5rem;
+  margin-bottom: var(--content-gap);
+  text-align: left;
+}
+
+.blog-page ul {
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.blog-page ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+}
+
+.blog-page ul li,
+.blog-page ol li {
+  margin-bottom: 0.5em;
+  padding-left: 0.25rem;
+  text-align: left;
+}
+
+/* Nested lists */
+.blog-page ul ul,
+.blog-page ol ol,
+.blog-page ul ol,
+.blog-page ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.blog-page ul ul {
+  list-style-type: circle;
+}
+
+.blog-page ul ul ul {
+  list-style-type: square;
+}
+
+/* ---------- Headings ---------- */
+.blog-page h1,
+.blog-page h2,
+.blog-page h3,
+.blog-page h4 {
+  color: var(--accent);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.blog-page h1 {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+.blog-page h2 {
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+}
+
+.blog-page h3 {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+}
+
+.blog-page h4 {
+  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+}
+
+/* ---------- Paragraphs ---------- */
+.blog-page p {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Code Styling ---------- */
+.blog-page code {
+  background: var(--code-bg);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-family: 'Fira Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.9em;
+  color: var(--accent-alt);
+  border: 1px solid var(--border);
+}
+
+.blog-page pre {
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.blog-page pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+/* ---------- Blog Categories ---------- */
 .blog-categories {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .category-btn {
   display: block;
   width: 100%;
@@ -243,6 +362,7 @@ a:focus {
   transition: background 0.5s ease, transform 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
+
 .category-btn:hover {
   background: linear-gradient(45deg, var(--accent), var(--accent-alt)), var(--accent);
   color: var(--theme);
@@ -250,103 +370,96 @@ a:focus {
   transform: translateY(-3px);
   box-shadow: 0 6px 18px rgba(0,0,0,0.3);
 }
-/* Responsive improvements */
-@media (max-width: 600px) {
-  .category-btn {
-    font-size: 1rem;
-    padding: 16px;
-  }
-}
-/* ---------- Blog List (Vertical) ---------- */
-.blog-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+
 .category-btn h2 {
   margin: 0 0 8px 0;
   font-size: 1.25rem;
   color: inherit;
 }
+
 .category-btn p {
   margin: 0;
-  font-size: 0.73rem;
+  font-size: 0.9rem;
   color: var(--secondary);
 }
-/* Responsive tweaks */
-@media (max-width: 600px) {
-  .category-btn {
-    padding: 16px;
+
+/* ---------- Responsive Tweaks ---------- */
+@media (max-width: 900px) {
+  :root {
+    --main-width: 700px;
   }
-  .category-btn h2 {
-    font-size: 1.1rem;
+  .intro {
+    padding: 28px;
   }
-  .category-btn p {
-    font-size: 0.9rem;
-.blog-page {
-  max-width: var(--main-width);
-  margin: 60px auto;
-  padding: 0 20px;
-  color: var(--primary);
-  text-align: left; /* Align text left for better reading */
-  font-size: 1rem;
-  line-height: 1.75;
-  word-break: break-word;
 }
-.blog-page a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color 0.25s ease;
-}
-.blog-page a:hover,
-.blog-page a:focus {
-  color: var(--accent-alt);
-  outline: none;
-}
-.blog-page ul {
-  list-style-position: inside; /* Place bullets inside padding */
-  list-style-type: disc; /* Use standard disc bullet */
-  margin-left: 1.25rem; /* Indent the list from left */
-  padding-left: 0;
-  margin-bottom: var(--content-gap);
-}
-.blog-page ul li {
-  margin-bottom: 0.4em; /* Spacing between list items */
-}
-.blog-page h2,
-.blog-page h3 {
-  color: var(--accent);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-.blog-page h2 {
-  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
-}
-.blog-page h3 {
-  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
-}
-/* Fix for code inside links and lists */
-.blog-page code {
-  background: var(--code-bg);
-  padding: 0.1em 0.3em;
-  border-radius: 3px;
-  font-family: 'Fira Mono', monospace, monospace;
-  font-size: 0.95em;
-  color: var(--accent-alt);
-}
-/* Override text-align center global from .blog-page if present */
-.blog-page p {
-  text-align: left;
-  margin-bottom: 1rem;
-}
-/* Responsive improvements */
+
 @media (max-width: 700px) {
   .blog-page {
     padding: 0 12px;
     font-size: 0.95rem;
   }
+  
+  .blog-page ul,
+  .blog-page ol {
+    padding-left: 1.25rem;
+  }
 }
+
+@media (max-width: 600px) {
+  :root {
+    --main-width: 100%;
+  }
+  
+  header {
+    padding: 6px 12px;
+  }
+  
+  .content {
+    margin: 24px 12px;
+  }
+  
+  .intro {
+    padding: 20px;
+  }
+  
+  .site-title {
+    font-size: 1.1rem;
+  }
+  
+  nav ul {
+    gap: 12px;
+  }
+  
+  .category-btn {
+    font-size: 1rem;
+    padding: 16px;
+  }
+  
+  .category-btn h2 {
+    font-size: 1.1rem;
+  }
+  
+  .category-btn p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 420px) {
+  body {
+    padding-top: calc(var(--header-height) + 6px);
+    padding-bottom: calc(var(--footer-height) + 8px);
+  }
+  
+  .intro h2 {
+    font-size: 1.4rem;
+  }
+  
+  .intro p {
+    font-size: 0.98rem;
+  }
+  
+  .blog-page ul,
+  .blog-page ol {
+    padding-left: 1rem;
   }
 }
