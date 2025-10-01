@@ -1,3 +1,3 @@
-# cyxigo.github.io
+# s4qc.github.io
 
-This repository contains source code for my website, and that's it.
+This repository contains nothing but the source code for my website, and that's it.
