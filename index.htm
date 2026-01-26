@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello!</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #505050;
+      --muted: #707070;
+      --card: #eeeeee;
+    }
+
+    [data-theme="dark"] {
+      --bg: #101010;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --card: #303030;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 80px;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      font-size: 16px;
+      padding: 6px 10px;
+      border: none;
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 520px;
+      padding: 40px 28px;
+    }
+
+    .title {
+      font-size: 80px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+    }
+
+    .meta {
+      font-size: 20px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .meta span {
+      padding: 0;
+      background: none;
+      border: none;
+    }
+
+    .meta span:not(:first-child)::before {
+      content: "-";
+      margin-right: 14px;
+      color: var(--muted);
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .link {
+      padding: 10px 14px;
+      border-radius: 0px;
+      background: var(--card);
+      border: none;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .link:hover {
+      opacity: 0.5;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding-left: 24px;
+      }
+
+      .title {
+        font-size: 48px;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <button class="theme-toggle" onclick="toggleTheme()">O</button>
+
+  <main class="wrapper">
+    <h1 class="title">Hello.</h1>
+    <div class="meta">
+      <span>15</span>
+      <span>he/him</span>
+      <span>🇹🇷</span>
+    </div>
+
+    <div class="links">
+      <a class="link" href="https://www.youtube.com/@witbise">YouTube</a>
+      <a class="link" href="https://www.reddit.com/user/wwuuoo/">Reddit</a>
+      <a class="link" href="https://discord.com/users/1344961786423676949">Discord</a>
+      <a class="link" href="https://github.com/bgv99">GitHub</a>
+    </div>
+  </main>
+
+  <script>
+    const body = document.body;
+    const btn = document.querySelector('.theme-toggle');
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      body.dataset.theme = savedTheme;
+      btn.textContent = savedTheme === 'dark' ? 'C' : 'O';
+    }
+
+    function toggleTheme() {
+      const isDark = body.dataset.theme === 'dark';
+      const nextTheme = isDark ? 'light' : 'dark';
+      body.dataset.theme = nextTheme;
+      btn.textContent = nextTheme === 'dark' ? 'C' : 'O';
+      localStorage.setItem('theme', nextTheme);
+    }
+  </script>
+</body>
+</html>
