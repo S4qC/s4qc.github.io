@@ -260,72 +260,73 @@
         </nav>
     </main>
 
-    <script>
-        const twitter = document.getElementById("twitter");
-        const body = document.body;
-        const links = document.querySelectorAll(".links a");
+<script>
+    const twitter = document.getElementById("twitter");
+    const body = document.body;
+    const links = document.querySelectorAll(".links a");
 
-        let suppressNextClick = false;
-        let holdTimer;
-        let isToggled = false;
-        const holdThreshold = 600;
+    let suppressNextClick = false;
+    let holdTimer;
+    let isToggled = false;
+    const holdThreshold = 600;
+    let isHolding = false;
 
-        function startHold(e) {
-            if (!isToggled) {
-                twitter.classList.add("twitter-shaking");
-            }
-
-            holdTimer = setTimeout(() => {
-                isToggled = !isToggled;
-                suppressNextClick = true;
-
-                body.classList.toggle("red-mode", isToggled);
-                twitter.classList.toggle("twitter-active", isToggled);
-
-                links.forEach(link => {
-                    if (link !== twitter) link.classList.toggle("pulse", isToggled);
-                });
-
-                if (navigator.vibrate) navigator.vibrate(50);
-                twitter.classList.remove("twitter-shaking");
-            }, holdThreshold);
+    function startHold(e) {
+        isHolding = false; // Reset at start
+        
+        if (!isToggled) {
+            twitter.classList.add("twitter-shaking");
         }
 
-        function cancelHold() {
-            clearTimeout(holdTimer);
+        holdTimer = setTimeout(() => {
+            isHolding = true; // Mark that we completed a hold
+            isToggled = !isToggled;
+            suppressNextClick = true;
+
+            body.classList.toggle("red-mode", isToggled);
+            twitter.classList.toggle("twitter-active", isToggled);
+
+            links.forEach(link => {
+                if (link !== twitter) link.classList.toggle("pulse", isToggled);
+            });
+
+            if (navigator.vibrate) navigator.vibrate(50);
             twitter.classList.remove("twitter-shaking");
-        }
+        }, holdThreshold);
+    }
 
-        // mouse
-        twitter.addEventListener("mousedown", startHold);
-        twitter.addEventListener("mouseup", cancelHold);
-        twitter.addEventListener("mouseleave", cancelHold);
+    function cancelHold() {
+        clearTimeout(holdTimer);
+        twitter.classList.remove("twitter-shaking");
+    }
 
-        // touch
-        twitter.addEventListener("touchstart", (e) => {
-            startHold(e);
-        });
-        twitter.addEventListener("touchend", cancelHold);
+    // mouse
+    twitter.addEventListener("mousedown", startHold);
+    twitter.addEventListener("mouseup", cancelHold);
+    twitter.addEventListener("mouseleave", cancelHold);
 
-        twitter.addEventListener("click", (e) => {
-            if (suppressNextClick) {
-                e.preventDefault();
-                e.stopPropagation();
-                suppressNextClick = false;
-                return;
-            }
+    // touch
+    twitter.addEventListener("touchstart", (e) => {
+        startHold(e);
+    });
+    twitter.addEventListener("touchend", cancelHold);
 
-            if (!isToggled) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        });
-
-
-        document.addEventListener("contextmenu", (e) => {
+    twitter.addEventListener("click", (e) => {
+        if (suppressNextClick) {
             e.preventDefault();
-        });
-    </script>
+            e.stopPropagation();
+            suppressNextClick = false;
+            return;
+        }
+        
+        // Allow normal link behavior for quick clicks
+        // The link will navigate naturally
+    });
+
+    document.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
+</script>
 </body>
 
 </html>
