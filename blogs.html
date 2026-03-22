@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S4qC — Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #e1abc6;
+      --bg2: #ffffff;
+      --bg3: #c694a7;
+
+      --pill-bg: rgba(255, 255, 255, 0.22);
+      --pill-hover: rgba(255, 255, 255, 0.35);
+      --card-bg: rgba(255, 255, 255, 0.18);
+      --card-hover: rgba(255, 255, 255, 0.28);
+      --border: rgba(255, 255, 255, 0.3);
+
+      --text-main: #121212;
+      --text-soft: rgba(10, 10, 10, 0.7);
+      --text-muted: rgba(10, 10, 10, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", system-ui, sans-serif;
+    }
+
+    /* ── red-mode overlay (same as index) ── */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(120deg, #000000, #000000, #2d0000);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: -1;
+    }
+    body.red-mode::before { opacity: 1; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(120deg, var(--bg1), var(--bg2), var(--bg3));
+      background-size: 300% 300%;
+      animation: gradientWave 16s ease infinite;
+      color: var(--text-main);
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    body.red-mode {
+      --text-main: #e0e0e0;
+      --text-soft: #b0b0b0;
+      --text-muted: rgba(200,200,200,0.5);
+      --card-bg: rgba(255,255,255,0.06);
+      --card-hover: rgba(255,255,255,0.1);
+      --border: rgba(255,255,255,0.08);
+      --pill-bg: rgba(255,255,255,0.08);
+      --pill-hover: rgba(255,255,255,0.15);
+    }
+
+    @keyframes gradientWave {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ── layout ── */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 6vw, 3rem);
+    }
+
+    /* ── top nav ── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--text-main);
+      background: var(--pill-bg);
+      backdrop-filter: blur(8px);
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .back-link:hover {
+      background: var(--pill-hover);
+      transform: translateY(-2px);
+    }
+    .back-link svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .site-name {
+      font-size: 1rem;
+      font-weight: 700;
+      opacity: 0.5;
+      letter-spacing: 1px;
+    }
+
+    /* ── page heading ── */
+    .page-heading {
+      margin: 0 0 0.4rem;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      color: var(--text-main);
+    }
+    .page-sub {
+      font-size: 1rem;
+      color: var(--text-soft);
+      margin: 0 0 2.5rem;
+    }
+
+    /* ── tag filter ── */
+    .tag-filter {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .tag-btn {
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--pill-bg);
+      backdrop-filter: blur(6px);
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, color 0.2s;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .tag-btn:hover { background: var(--pill-hover); transform: translateY(-1px); }
+    .tag-btn.active {
+      background: var(--text-main);
+      color: var(--bg1);
+      border-color: transparent;
+    }
+    body.red-mode .tag-btn.active {
+      background: #e0e0e0;
+      color: #121212;
+    }
+
+    /* ── post list ── */
+    #post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .post-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.4rem 1.6rem;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.35s ease forwards;
+    }
+    .post-card:hover {
+      background: var(--card-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.55rem;
+    }
+    .post-date {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .post-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .post-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      color: var(--text-soft);
+      letter-spacing: 0.3px;
+    }
+
+    .post-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0 0 0.4rem;
+    }
+    .post-summary {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .no-posts {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 3rem 0;
+      font-size: 0.95rem;
+    }
+
+    /* ── single post view ── */
+    #post-view {
+      display: none;
+    }
+
+    .post-view-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .post-view-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 0 0 1.2rem;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+
+    .post-view-body {
+      font-size: 1rem;
+      color: var(--text-soft);
+      line-height: 1.75;
+      -webkit-user-select: text;
+      user-select: text;
+    }
+
+    .post-view-body p {
+      margin: 0 0 1.1rem;
+    }
+
+    /* stagger animation delays */
+    .post-card:nth-child(1) { animation-delay: 0.05s; }
+    .post-card:nth-child(2) { animation-delay: 0.12s; }
+    .post-card:nth-child(3) { animation-delay: 0.19s; }
+    .post-card:nth-child(4) { animation-delay: 0.26s; }
+    .post-card:nth-child(5) { animation-delay: 0.33s; }
+  </style>
+</head>
+<body>
+  <script>
+    if (localStorage.getItem("redMode") === "true") {
+      document.body.classList.add("red-mode");
+    }
+  </script>
+
+  <div class="page">
+
+    <!-- top bar -->
+    <div class="topbar">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Back
+      </a>
+      <span class="site-name">S4qC</span>
+    </div>
+
+    <!-- list view -->
+    <div id="list-view">
+      <h1 class="page-heading">Blog</h1>
+      <p class="page-sub" id="post-count">Loading…</p>
+
+      <div class="tag-filter" id="tag-filter"></div>
+
+      <div id="post-list"></div>
+    </div>
+
+    <!-- single post view -->
+    <div id="post-view">
+      <button class="back-link" id="back-to-list" style="margin-bottom:2rem;border:none;cursor:pointer;">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        All posts
+      </button>
+
+      <div class="post-view-meta" id="pv-meta"></div>
+      <h2 class="post-view-title" id="pv-title"></h2>
+      <hr class="divider">
+      <div class="post-view-body" id="pv-body"></div>
+    </div>
+
+  </div>
+
+  <script>
+    const BLOGS_JSON = "blogs.json";
+
+    let allPosts = [];
+    let activeTag = "all";
+
+    const listView   = document.getElementById("list-view");
+    const postView   = document.getElementById("post-view");
+    const postList   = document.getElementById("post-list");
+    const tagFilter  = document.getElementById("tag-filter");
+    const postCount  = document.getElementById("post-count");
+    const backBtn    = document.getElementById("back-to-list");
+
+    // ── fetch posts ──
+    async function loadPosts() {
+      try {
+        const res  = await fetch(BLOGS_JSON);
+        allPosts   = await res.json();
+        // sort newest first
+        allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        buildTagFilter();
+        renderList();
+      } catch (e) {
+        postList.innerHTML = `<p class="no-posts">Couldn't load posts. Make sure blogs.json is in the same folder.</p>`;
+        postCount.textContent = "";
+      }
+    }
+
+    // ── tags ──
+    function buildTagFilter() {
+      const tagSet = new Set(["all"]);
+      allPosts.forEach(p => p.tags.forEach(t => tagSet.add(t)));
+
+      tagFilter.innerHTML = "";
+      tagSet.forEach(tag => {
+        const btn = document.createElement("button");
+        btn.className = "tag-btn" + (tag === "all" ? " active" : "");
+        btn.textContent = tag === "all" ? "All" : tag;
+        btn.addEventListener("click", () => {
+          activeTag = tag;
+          document.querySelectorAll(".tag-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderList();
+        });
+        tagFilter.appendChild(btn);
+      });
+    }
+
+    // ── list ──
+    function renderList() {
+      const filtered = activeTag === "all"
+        ? allPosts
+        : allPosts.filter(p => p.tags.includes(activeTag));
+
+      postCount.textContent = filtered.length === 1
+        ? "1 post"
+        : `${filtered.length} posts`;
+
+      postList.innerHTML = "";
+      if (!filtered.length) {
+        postList.innerHTML = `<p class="no-posts">No posts tagged "${activeTag}".</p>`;
+        return;
+      }
+
+      filtered.forEach(post => {
+        const card = document.createElement("div");
+        card.className = "post-card";
+        card.innerHTML = `
+          <div class="post-meta">
+            <span class="post-date">${formatDate(post.date)}</span>
+            <div class="post-tags">${post.tags.map(t => `<span class="post-tag">${t}</span>`).join("")}</div>
+          </div>
+          <p class="post-title">${post.title}</p>
+          <p class="post-summary">${post.summary}</p>
+        `;
+        card.addEventListener("click", () => openPost(post));
+        postList.appendChild(card);
+      });
+    }
+
+    // ── single post ──
+    function openPost(post) {
+      document.getElementById("pv-title").textContent = post.title;
+
+      document.getElementById("pv-meta").innerHTML = `
+        <span class="post-date">${formatDate(post.date)}</span>
+        <div class="post-tags">${post.tags.map(t => `<span class="post-tag">${t}</span>`).join("")}</div>
+      `;
+
+      // convert newlines to paragraphs
+      const html = post.content
+        .split(/\n\n+/)
+        .map(para => `<p>${para.replace(/\n/g, "<br>")}</p>`)
+        .join("");
+      document.getElementById("pv-body").innerHTML = html;
+
+      listView.style.display = "none";
+      postView.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    backBtn.addEventListener("click", () => {
+      postView.style.display = "none";
+      listView.style.display = "block";
+    });
+
+    // ── helpers ──
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + "T00:00:00");
+      return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+    }
+
+    loadPosts();
+  </script>
+</body>
+</html>
