@@ -1,26 +1,10 @@
 [
   {
     "id": "001",
-    "title": "Getting Started with Unreal Engine 5",
+    "title": "Test",
     "date": "2025-03-10",
-    "tags": ["unreal", "gamedev"],
-    "summary": "My first steps into UE5 — setting up a project, learning the editor, and figuring out why my mesh was inside-out.",
+    "tags": ["general"],
+    "summary": "Test head",
     "content": "It started with a blank project and a lot of confusion. UE5's Lumen and Nanite are genuinely impressive once you get past the initial setup. First lesson: always check your normals.\n\nI spent the first week just learning the viewport controls and understanding how actors, components, and blueprints fit together. The Blueprint system is surprisingly powerful for prototyping before you drop into C++.\n\nHighly recommend the official Lyra sample project as a reference — it's overwhelming at first but extremely well-structured."
-  },
-  {
-    "id": "002",
-    "title": "C++ vs Blueprints: When to Use Which",
-    "date": "2025-04-02",
-    "tags": ["c++", "unreal", "programming"],
-    "summary": "A breakdown of my workflow — when I reach for C++ and when Blueprints are just faster.",
-    "content": "Short answer: C++ for systems, Blueprints for iteration.\n\nI write all my core game logic — movement, combat math, data structures — in C++. It's faster at runtime and easier to maintain long-term. But for quickly wiring up UI interactions or testing a mechanic idea, Blueprints let me move fast without recompiling.\n\nThe hybrid workflow is honestly the sweet spot. Expose your C++ functions to Blueprints with UFUNCTION(BlueprintCallable) and you get the best of both."
-  },
-  {
-    "id": "003",
-    "title": "3D Modeling for Games: What I Wish I Knew Earlier",
-    "date": "2025-05-18",
-    "tags": ["blender", "3d", "art"],
-    "summary": "Hard-learned tips from months of modeling — topology, UV unwrapping, and why poly count actually matters.",
-    "content": "I learned Blender by breaking things. A lot of things.\n\nThe biggest early mistake: not thinking about topology. Beautiful high-poly sculpts are useless in-game if they don't deform properly or can't be retopologized cleanly. I now always model with deformation in mind, even for static props.\n\nUV unwrapping is the unsexy part nobody warns you about. It's tedious, but a clean UV map is the difference between textures that look painted-on and textures that look real. Get comfortable with the UV editor early."
   }
 ]
