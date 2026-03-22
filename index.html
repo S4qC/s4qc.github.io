@@ -275,28 +275,31 @@
 
     let suppressNextClick = false;
     let holdTimer;
-    let isToggled = false;
+    let isToggled = localStorage.getItem("redMode") === "true";
     const holdThreshold = 600;
     let isHolding = false;
 
+    // apply saved state on load
+    if (isToggled) {
+        body.classList.add("red-mode");
+        twitter.classList.add("twitter-active");
+        links.forEach(link => { if (link !== twitter) link.classList.add("pulse"); });
+    }
+
     function startHold(e) {
-        isHolding = false; // Reset at start
-        
-        if (!isToggled) {
-            twitter.classList.add("twitter-shaking");
-        }
+        isHolding = false;
+        if (!isToggled) twitter.classList.add("twitter-shaking");
 
         holdTimer = setTimeout(() => {
-            isHolding = true; // Mark that we completed a hold
+            isHolding = true;
             isToggled = !isToggled;
             suppressNextClick = true;
 
+            localStorage.setItem("redMode", isToggled);
+
             body.classList.toggle("red-mode", isToggled);
             twitter.classList.toggle("twitter-active", isToggled);
-
-            links.forEach(link => {
-                if (link !== twitter) link.classList.toggle("pulse", isToggled);
-            });
+            links.forEach(link => { if (link !== twitter) link.classList.toggle("pulse", isToggled); });
 
             if (navigator.vibrate) navigator.vibrate(50);
             twitter.classList.remove("twitter-shaking");
@@ -308,15 +311,10 @@
         twitter.classList.remove("twitter-shaking");
     }
 
-    // mouse
     twitter.addEventListener("mousedown", startHold);
     twitter.addEventListener("mouseup", cancelHold);
     twitter.addEventListener("mouseleave", cancelHold);
-
-    // touch
-    twitter.addEventListener("touchstart", (e) => {
-        startHold(e);
-    });
+    twitter.addEventListener("touchstart", startHold);
     twitter.addEventListener("touchend", cancelHold);
 
     twitter.addEventListener("click", (e) => {
@@ -326,14 +324,9 @@
             suppressNextClick = false;
             return;
         }
-        
-        // Allow normal link behavior for quick clicks
-        // The link will navigate naturally
     });
 
-    document.addEventListener("contextmenu", (e) => {
-        e.preventDefault();
-    });
+    document.addEventListener("contextmenu", (e) => e.preventDefault());
 </script>
 </body>
 
