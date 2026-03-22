@@ -5,6 +5,6 @@
     "date": "2025-03-10",
     "tags": ["general"],
     "summary": "Test head",
-    "content": "It started with a blank project and a lot of confusion. UE5's Lumen and Nanite are genuinely impressive once you get past the initial setup. First lesson: always check your normals.\n\nI spent the first week just learning the viewport controls and understanding how actors, components, and blueprints fit together. The Blueprint system is surprisingly powerful for prototyping before you drop into C++.\n\nHighly recommend the official Lyra sample project as a reference — it's overwhelming at first but extremely well-structured."
+    "content": "Test body"
   }
 ]
