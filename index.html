@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S4qC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg1: #e1abc6;
+            --bg2: #ffffff;
+            --bg3: #c694a7;
+
+            --pill-bg: rgba(255, 255, 255, 0.22);
+            --pill-hover: rgba(255, 255, 255, 0.35);
+
+            --text-main: #121212;
+            --text-soft: rgba(10, 10, 10, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(120deg, #000000, #000000, #2d0000);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: -1;
+        }
+
+        body.red-mode::before {
+            opacity: 1;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+
+            background: linear-gradient(120deg, var(--bg1), var(--bg2), var(--bg3));
+            background-size: 300% 300%;
+            animation: gradientWave 16s ease infinite;
+
+            color: var(--text-main);
+
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+
+        body.red-mode {
+            --text-main: #e0e0e0;
+            --text-soft: #b0b0b0;
+        }
+
+        body.red-mode .links a {
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes gradientWave {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .content {
+            max-width: 720px;
+            padding-left: clamp(3rem, 10vw, 12rem);
+            padding-right: 2rem;
+        }
+
+        h1 {
+            margin: 0 0 0.9rem;
+            color: var(--text-main);
+            font-size: clamp(2.6rem, 4.2vw, 3.6rem);
+            font-weight: 800;
+            letter-spacing: 0.6px;
+        }
+
+        p.bio {
+            margin: 0 0 2.2rem;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: var(--text-soft);
+        }
+
+        .links {
+            display: flex;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.55rem 1.05rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--text-main);
+            background: var(--pill-bg);
+            backdrop-filter: blur(8px);
+            font-weight: 500;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .links a:hover {
+            background: var(--pill-hover);
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding-left: 2rem;
+            }
+        }
+
+        /* shake animation */
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-3px);
+            }
+
+            40% {
+                transform: translateX(3px);
+            }
+
+            60% {
+                transform: translateX(-3px);
+            }
+
+            80% {
+                transform: translateX(3px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* flip */
+        @keyframes flipY {
+            0% {
+                transform: scaleY(1);
+            }
+
+            100% {
+                transform: scaleY(-1);
+            }
+        }
+
+        @keyframes heartbeat {
+            0% {
+                background: var(--pill-bg);
+            }
+
+            25% {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            60% {
+                background: rgba(255, 255, 255, 0.4);
+            }
+
+            100% {
+                background: var(--pill-bg);
+            }
+        }
+
+#twitter {
+    transition: transform 1s cubic-bezier(0, 1, 0, 1), background 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    cursor: pointer;  
+}
+
+        .twitter-active {
+            transform: rotateX(180deg) !important;
+            background: rgba(255, 255, 255, 0.4) !important;
+        }
+
+        .twitter-shaking {
+            animation: shake 0.2s ease infinite;
+        }
+
+        .pulse {
+            animation: heartbeat 1.2s ease-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="content">
+        <h1>S4qC</h1>
+        <p class="bio">
+            He/Him.  14.  Unreal developer.  3d modeler.  C++ Programmer.
+        </p>
+
+
+        <nav class="links">
+
+            <a href="https://github.com/s4qc" target="_blank">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.43 7.86 10.96.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.71 1.25 3.37.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.19a11 11 0 0 1 5.8 0c2.2-1.5 3.17-1.19 3.17-1.19.63 1.6.23 2.78.11 3.07.74.81 1.18 1.85 1.18 3.11 0 4.43-2.69 5.4-5.25 5.68.41.35.77 1.04.77 2.1v3.12c0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z" />
+                </svg>
+                GitHub
+            </a>
+
+            <a href="https://discord.com/users/843354685556654110" target="_blank">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M20.3 4.5A19.6 19.6 0 0 0 16 3.1l-.2.4a18 18 0 0 1 3.7 1.8 13.8 13.8 0 0 0-15.1 0A18 18 0 0 1 8.2 3.5l-.2-.4A19.6 19.6 0 0 0 3.7 4.5C1.3 8.1.6 11.6.9 15.1a19.8 19.8 0 0 0 6 3l.7-1a12.5 12.5 0 0 1-2.6-1.3l.6-.4a13.7 13.7 0 0 0 12.8 0l.6.4a12.5 12.5 0 0 1-2.6 1.3l.7 1a19.8 19.8 0 0 0 6-3c.4-4-.4-7.5-2.6-10.6zM8.5 13.8c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8zm7 0c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8z" />
+                </svg>
+                Discord
+            </a>
+
+            <a href="https://x.com/devs4qc" target="_blank" id="twitter">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M23.4 4.8a9.6 9.6 0 0 1-2.8.77 4.86 4.86 0 0 0 2.14-2.68 9.7 9.7 0 0 1-3.07 1.17 4.84 4.84 0 0 0-8.25 4.41A13.74 13.74 0 0 1 1.64 3.2a4.84 4.84 0 0 0 1.5 6.46 4.8 4.8 0 0 1-2.2-.6v.06a4.85 4.85 0 0 0 3.88 4.75 4.9 4.9 0 0 1-2.19.08 4.85 4.85 0 0 0 4.53 3.36A9.7 9.7 0 0 1 0 19.54 13.68 13.68 0 0 0 7.55 21.7c9.06 0 14-7.5 14-14v-.64a9.9 9.9 0 0 0 2.45-2.52z" />
+                </svg>
+                Twitter
+            </a>
+
+            <a href="blogs.html">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 5h18v2H3V5zm0 4h18v2H3V9zm0 4h12v2H3v-2zm0 4h8v2H3v-2z"/>
+                </svg>
+                Blog
+            </a>
+
+        </nav>
+    </main>
+
+<script>
+    const twitter = document.getElementById("twitter");
+    const body = document.body;
+    const links = document.querySelectorAll(".links a");
+
+    let suppressNextClick = false;
+    let holdTimer;
+    let isToggled = false;
+    const holdThreshold = 600;
+    let isHolding = false;
+
+    function startHold(e) {
+        isHolding = false; // Reset at start
+        
+        if (!isToggled) {
+            twitter.classList.add("twitter-shaking");
+        }
+
+        holdTimer = setTimeout(() => {
+            isHolding = true; // Mark that we completed a hold
+            isToggled = !isToggled;
+            suppressNextClick = true;
+
+            body.classList.toggle("red-mode", isToggled);
+            twitter.classList.toggle("twitter-active", isToggled);
+
+            links.forEach(link => {
+                if (link !== twitter) link.classList.toggle("pulse", isToggled);
+            });
+
+            if (navigator.vibrate) navigator.vibrate(50);
+            twitter.classList.remove("twitter-shaking");
+        }, holdThreshold);
+    }
+
+    function cancelHold() {
+        clearTimeout(holdTimer);
+        twitter.classList.remove("twitter-shaking");
+    }
+
+    // mouse
+    twitter.addEventListener("mousedown", startHold);
+    twitter.addEventListener("mouseup", cancelHold);
+    twitter.addEventListener("mouseleave", cancelHold);
+
+    // touch
+    twitter.addEventListener("touchstart", (e) => {
+        startHold(e);
+    });
+    twitter.addEventListener("touchend", cancelHold);
+
+    twitter.addEventListener("click", (e) => {
+        if (suppressNextClick) {
+            e.preventDefault();
+            e.stopPropagation();
+            suppressNextClick = false;
+            return;
+        }
+        
+        // Allow normal link behavior for quick clicks
+        // The link will navigate naturally
+    });
+
+    document.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
+</script>
+</body>
+
+</html>
