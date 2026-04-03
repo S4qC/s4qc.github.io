@@ -1,10 +1,10 @@
 [
   {
     "id": "001",
-    "title": "Test",
+    "title": "Cool fact",
     "date": "2025-03-10",
     "tags": ["general"],
-    "summary": "Test head",
-    "content": "Test body"
+    "summary": "Cool funfact about my site",
+    "content": "<b>Did you know?</b> By clicking and holding the Twitter button on the <a href=\"https://s4qc.github.io\" style=\"color: #4a90e2;\">home page</a>, you can change the theme. Try it out for yourself."
   }
 ]
